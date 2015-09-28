@@ -1,3 +1,3 @@
 # fish_config
 
-`git clone git@github.com:bcbcarl/fish_config.git ~/.config/fish`
+`git clone https://github.com/bcbcarl/fish_config.git ~/.config/fish`
