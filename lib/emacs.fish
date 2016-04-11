@@ -1,14 +1,14 @@
 function __emacs_socket --description 'Set Emacs server socket'
   set -l socket /tmp/emacs(id -u)/server
   if not test -e $socket
-    test $uname = 'Darwin'; and set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)/server
+    test (uname) = 'Darwin'; and set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)/server
   end
   echo $socket
 end
 
 function __emacs_client --description 'Emacs client'
   set -l socket (__emacs_socket)
-  if test $uname = 'Darwin'
+  if test (uname) = 'Darwin'
     emacsclient -s $socket $argv
     return
   end

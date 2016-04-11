@@ -1,11 +1,9 @@
-set -l uname (uname)
-
 if not command -s docker > /dev/null
   exit 1
 end
 
 # docker-machine is needed if you're using Mac OS X
-if test $uname = 'Darwin'
+if test (uname) = 'Darwin'
   if not command -s docker-machine > /dev/null
     exit 1
   end
