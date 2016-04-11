@@ -1,18 +1,10 @@
-set fish_path "$HOME/.config/fish"
+set -g fish_path "$HOME/.config/fish"
 set -x PATH "/usr/local/sbin" $PATH
 
-# Git
-. $fish_path/git.fish
+set -l plugins git pyenv rbenv
 
-# pyenv
-. $fish_path/pyenv.fish
-
-# rbenv
-. $fish_path/rbenv.fish
-
-# Android SDK
-#. $fish_path/android.fish
-
-for file in $fish_path/lib/*.fish
-  source $file
+for plugin in $plugins
+  set -l fish_lib $fish_path/lib/$plugin.fish
+  [ -f $fish_lib ]; and source $fish_lib
+  source $fish_path/plugins/$plugin.fish
 end
