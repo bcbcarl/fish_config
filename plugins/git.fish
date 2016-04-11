@@ -1,6 +1,7 @@
 set -l git_diff '__git_diff'
 set -l git_current_branch '__git_current_branch'
 
+abbr -a g git
 abbr -a ga git add
 abbr -a gb git branch
 abbr -a gba git branch --all
