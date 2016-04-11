@@ -34,6 +34,7 @@ alias dpsa 'docker ps -a'
 
 # docker-machine is optional if you're using native Docker
 if command -s docker-machine > /dev/null
+  alias dmver 'docker-machine version'
   alias dmstart 'docker-machine start'
   alias dmrestart 'docker-machine restart'
   alias dmstop 'docker-machine stop'
