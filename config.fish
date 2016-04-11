@@ -1,7 +1,7 @@
 set -g fish_path "$HOME/.config/fish"
 set -x PATH "/usr/local/sbin" $PATH
 
-if test $uname = 'Linux'
+if test (uname) = 'Linux'
   set -x PATH "$HOME/.bin" $PATH
 end
 
