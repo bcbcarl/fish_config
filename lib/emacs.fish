@@ -8,7 +8,11 @@ end
 
 function __emacs_client --description 'Emacs client'
   set -l socket (__emacs_socket)
-  emacsclient -s $socket $argv
+  if test $uname = 'Darwin'
+    emacsclient -s $socket $argv
+    return
+  end
+  emacsclient $argv
 end
 
 function __emacs_daemon --description 'Emacs daemon'
