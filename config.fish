@@ -1,7 +1,7 @@
 set -g fish_path "$HOME/.config/fish"
 set -x PATH "/usr/local/sbin" $PATH
 
-set -l plugins git pyenv rbenv
+set -l plugins git pyenv rbenv emacs
 
 for plugin in $plugins
   set -l fish_lib $fish_path/lib/$plugin.fish
