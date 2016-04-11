@@ -1,7 +1,7 @@
 function __emacs_socket --description 'Set Emacs server socket'
   set -l socket /tmp/emacs(id -u)/server
-  if not test -f $socket
-    set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)/server
+  if not test -e $socket
+    test $uname = 'Darwin'; and set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)/server
   end
   echo $socket
 end
