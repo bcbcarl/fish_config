@@ -1,3 +1,11 @@
+if not command -s docker > /dev/null
+  exit 1
+end
+
+if not command -s docker-machine > /dev/null
+  exit 1
+end
+
 # docker-machine
 alias dmstart 'docker-machine start'
 alias dmrestart 'docker-machine restart'
