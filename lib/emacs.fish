@@ -9,7 +9,7 @@ end
 function __emacs_client --description 'Emacs client'
   set -l socket (__emacs_socket)
   if test (uname) = 'Darwin'
-    emacsclient -s $socket $argv
+    emacsclient -s $socket -n $argv
     return
   end
   emacsclient $argv
@@ -26,8 +26,8 @@ function __emacs_run --description 'Emacs launcher'
   # Create new frame if no existing frames
   set -l cmd '(length (visible-frame-list))'
   set -l frame_count (__emacs_client --eval $cmd 2>/dev/null)
-  test $frame_count -eq 1; and __emacs_client -n -c $argv; and return
-  __emacs_client -n $argv
+  test $frame_count -eq 1; and __emacs_client -c $argv; and return
+  __emacs_client $argv
 end
 
 function __emacs_eeval --description '
