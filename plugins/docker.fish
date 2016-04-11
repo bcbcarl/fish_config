@@ -22,4 +22,4 @@ alias dpush 'docker push'
 alias dps 'docker ps'
 alias dpsa 'docker ps -a'
 
-eval (dmenv)
+test (uname) = 'Darwin'; and eval (dmenv)
