@@ -38,6 +38,7 @@ if command -s docker-machine > /dev/null
   alias dmrestart 'docker-machine restart'
   alias dmstop 'docker-machine stop'
   alias dmstatus 'docker-machine status'
+  alias dmls 'docker-machine ls'
   alias dmenv $dmenv
   alias dmip 'docker-machine ip'
 end
