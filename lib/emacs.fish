@@ -12,12 +12,26 @@ function __emacs_client --description 'Emacs client'
     emacsclient -s $socket -n $argv
     return
   end
-  emacsclient $argv
+  emacsclient -c $argv
+end
+
+function __emacs_daemon_linux --description 'Emacs daemon (Linux)'
+  if test -z (pgrep emacs)
+    emacs --daemon
+  end
+end
+
+function __emacs_daemon_mac --description 'Emacs daemon (Mac)'
+  if test -z (pgrep Emacs)
+    emacs --daemon
+  end
 end
 
 function __emacs_daemon --description 'Emacs daemon'
-  if test -z (pgrep Emacs)
-    emacs --daemon
+  if test (uname) = 'Darwin'
+    __emacs_daemon_mac
+  else
+    __emacs_daemon_linux
   end
 end
 
