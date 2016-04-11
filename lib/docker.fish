@@ -1,5 +1,5 @@
 function __docker_env --description 'Get Docker Machine environment variables'
-	docker-machine env --shell fish $argv
+  docker-machine env --shell fish $argv
 end
 
 function __docker_init --description 'Set up Docker environment'
