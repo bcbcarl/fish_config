@@ -1,18 +1,20 @@
+set -l uname (uname)
+
 if not command -s docker > /dev/null
   exit 1
 end
 
-if not command -s docker-machine > /dev/null
-  exit 1
+# docker-machine is needed if you're using Mac OS X
+if test $uname = 'Darwin'
+  if not command -s docker-machine > /dev/null
+    exit 1
+  end
+  if not command -s virtualbox > /dev/null
+    exit 1
+  end
 end
 
-# docker-machine
-alias dmstart 'docker-machine start'
-alias dmrestart 'docker-machine restart'
-alias dmstop 'docker-machine stop'
-alias dmstatus 'docker-machine status'
-alias dmenv 'docker-machine env --shell fish'
-alias dmip 'docker-machine ip'
+set -l dmenv '__docker_env'
 
 # docker
 abbr -a d docker
@@ -30,4 +32,14 @@ alias dpush 'docker push'
 alias dps 'docker ps'
 alias dpsa 'docker ps -a'
 
-test (uname) = 'Darwin'; and eval (dmenv)
+# docker-machine is optional if you're using native Docker
+if command -s docker-machine > /dev/null
+  alias dmstart 'docker-machine start'
+  alias dmrestart 'docker-machine restart'
+  alias dmstop 'docker-machine stop'
+  alias dmstatus 'docker-machine status'
+  alias dmenv $dmenv
+  alias dmip 'docker-machine ip'
+end
+
+__docker_init
