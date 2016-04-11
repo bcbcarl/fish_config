@@ -1,3 +1,7 @@
+if not command -s emacs > /dev/null
+  exit 1
+end
+
 set -l emacs '__emacs_run'
 set -l eeval '__emacs_eeval'
 set -l eframe '__emacs_eframe'
