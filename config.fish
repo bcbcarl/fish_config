@@ -12,3 +12,7 @@ set -x PATH "/usr/local/sbin" $PATH
 
 # Android SDK
 #. $fish_path/android.fish
+
+for file in $fish_path/lib/*.fish
+  source $file
+end
