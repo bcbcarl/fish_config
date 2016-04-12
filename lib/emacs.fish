@@ -1,15 +1,21 @@
 function __emacs_socket --description 'Set Emacs server socket'
-  set -l socket /tmp/emacs(id -u)/server
-  if not test -e $socket
-    test (uname) = 'Darwin'; and set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)/server
+  if test -d /tmp/emacs(id -u)
+    set -l socket /tmp/emacs(id -u)/server
+    echo $socket
+    return
   end
-  echo $socket
+  # Mac OS X
+  if test (uname) = 'Darwin'
+    if test -d (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)
+      set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs(id -u)/server
+      echo $socket
+    end
+  end
 end
 
 function __emacs_client --description 'Emacs client'
-  set -l socket (__emacs_socket)
   if test (uname) = 'Darwin'
-    emacsclient -s $socket -n $argv
+    emacsclient -s (__emacs_socket) -n $argv
     return
   end
   emacsclient $argv
@@ -37,11 +43,14 @@ end
 
 function __emacs_run --description 'Emacs launcher'
   __emacs_daemon
-  # Create new frame if no existing frames
-  set -l cmd '(length (visible-frame-list))'
-  set -l frame_count (__emacs_client --eval $cmd 2>/dev/null)
   if test (uname) = 'Darwin'
-    test $frame_count -eq 1; and __emacs_client -c $argv; and return
+    # Create new frame if no existing frames
+    set -l cmd '(length (visible-frame-list))'
+    set -l frame_count (__emacs_client --eval $cmd 2>/dev/null)
+    if test "$frame_count" -eq 1
+      __emacs_client -c $argv
+      return
+    end
   end
   __emacs_client $argv
 end
