@@ -1,5 +1,4 @@
 set -l git_diff '__git_diff'
-set -l git_current_branch '__git_current_branch'
 
 abbr -a g git
 abbr -a ga git add
@@ -13,7 +12,7 @@ abbr -a gdca $git_diff --cached
 abbr -a gdf git diff
 abbr -a gf git fetch
 abbr -a gfa git fetch --all --prune
-abbr -a ggpush git push origin $git_current_branch
+abbr -a ggpush git push origin (__git_current_branch)
 abbr -a glgga git log --graph --decorate --all
 abbr -a gm git merge
 abbr -a gp git push
