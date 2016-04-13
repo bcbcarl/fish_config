@@ -1,5 +1,7 @@
 function __git_current_branch --description 'Show Git current branch'
-  git name-rev --name-only HEAD
+  if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
+    git name-rev --name-only HEAD
+  end
 end
 
 function __git_diff --description 'Fancy Git diffs'
