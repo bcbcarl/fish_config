@@ -6,6 +6,14 @@ This config is tested under Debian Jessie (emacs-nox) and Mac OS X El Capitan.
 
 * git
 
+## Plugins
+
+* docker
+* emacs
+* git
+* pyenv
+* rbenv
+
 ## Installation
 
 * `rm -rf ~/.config/fish`
