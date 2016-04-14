@@ -7,6 +7,7 @@ abbr -a gba git branch --all
 abbr -a gcb git checkout -b
 abbr -a gcm git checkout master
 abbr -a gcmsg git commit -m
+abbr -a gco git checkout
 abbr -a gd $git_diff
 abbr -a gdca $git_diff --cached
 abbr -a gdf git diff
